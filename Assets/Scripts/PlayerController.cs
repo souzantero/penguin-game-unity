@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     void Move(float x, float y)
     {
+        Vector2 direction = Vector2.zero;
+
         if (x >= 0.0f && y >= 0.0f)
         {
             spriteRenderer.flipX = false;
@@ -57,14 +59,17 @@ public class PlayerController : MonoBehaviour
             if ((x - y) > -diagonalArea && (x - y) < diagonalArea)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -45.0f);
+                direction = new Vector2(1, 1).normalized;
             }
             else if (x >= y)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
+                direction = Vector2.right;
             }
             else
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                direction = Vector2.up;
             }
         }
         else if (x >= 0.0f && y < 0.0f)
@@ -74,14 +79,17 @@ public class PlayerController : MonoBehaviour
             if ((x + y) > -diagonalArea && (x + y) < diagonalArea)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -135.0f);
+                direction = new Vector2(1, -1).normalized;
             }
             else if ((x + y) >= 0)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
+                direction = Vector2.right;
             }
             else
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -180.0f);
+                direction = Vector2.down;
             }
         }
         else if (x < 0.0f && y >= 0.0f)
@@ -91,14 +99,17 @@ public class PlayerController : MonoBehaviour
             if ((x + y) > -diagonalArea && (x + y) < diagonalArea)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 45.0f);
+                direction = new Vector2(-1, 1).normalized;
             }
             else if ((x + y) >= 0)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                direction = Vector2.up;
             }
             else
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
+                direction = Vector2.left;
             }
         }
         else if (x < 0.0f && y < 0.0f)
@@ -108,18 +119,21 @@ public class PlayerController : MonoBehaviour
             if ((x - y) > -diagonalArea && (x - y) < diagonalArea)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 135.0f);
+                direction = new Vector2(-1, -1).normalized;
             }
             else if (x <= y)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
+                direction = Vector2.left;
             }
             else
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
+                direction = Vector2.down;
             }
         }
 
-        body.velocity = new Vector2(x, y).normalized * Speed;
+        body.velocity = direction * Speed;
     }
 
     void OnTriggerEnter2D(Collider2D other)
