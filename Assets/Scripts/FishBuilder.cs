@@ -5,7 +5,7 @@ using UnityEngine;
 public class FishBuilder : MonoBehaviour
 {
     public float Width;
-    public float Depth;
+    public float Height;
     public GameObject FishObject;
     public int FishQuantity;
 
@@ -14,7 +14,7 @@ public class FishBuilder : MonoBehaviour
         for (int i = 0; i < FishQuantity; i++)
         {
             float positionX = Random.Range(-Width/2, Width/2);
-            float positionY = Random.Range(-(2 * Depth), 0);
+            float positionY = Random.Range(-(2 * Height), 0);
             Vector3 position = new Vector3(positionX, positionY, 0);
 
             SpriteRenderer fishSpriteRenderer = FishObject.GetComponent<SpriteRenderer>();
