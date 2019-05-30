@@ -14,7 +14,7 @@ public class FishBuilder : MonoBehaviour
         for (int i = 0; i < FishQuantity; i++)
         {
             float positionX = Random.Range(-Width/2, Width/2);
-            float positionY = Random.Range(-(2 * Height), 0);
+            float positionY = Random.Range(-(Height), -2);
             Vector3 position = new Vector3(positionX, positionY, 0);
 
             SpriteRenderer fishSpriteRenderer = FishObject.GetComponent<SpriteRenderer>();

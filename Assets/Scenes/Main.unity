@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 4986542}
   - component: {fileID: 4986543}
   - component: {fileID: 4986547}
+  - component: {fileID: 4986548}
   - component: {fileID: 4986544}
   - component: {fileID: 4986545}
   - component: {fileID: 4986546}
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Width: 220
-  Height: 110
+  Height: 220
   BubbleObject: {fileID: 3776631738169311989, guid: 90f438c0749164c329a1b179bc294e0c,
     type: 3}
   BubbleQuantity: 3000
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Width: 180
-  Height: 90
+  Height: 180
   FishObject: {fileID: 6335948154023139599, guid: f38f13bde130c47628a064b9965e5752,
     type: 3}
   FishQuantity: 100
@@ -272,8 +273,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47833f1440a51431dbcb24ea98432fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 440
+  Width: 220
   SurfaceObject: {fileID: 5530578855865882104, guid: 0ec89a220055d4b488e346586b34e47c,
+    type: 3}
+--- !u!114 &4986548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d5323ac05424689a86dd1315dd503a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 220
+  Height: 220
+  OceanObject: {fileID: 7972588028727220685, guid: 7c337ac38af8c4c339b32fd1dae5a6bb,
     type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -325,7 +342,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.5764706, b: 0.6862745, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.6556604, b: 0.8226908, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
