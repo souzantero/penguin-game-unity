@@ -11,10 +11,10 @@ public class BubblesBuilder : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i <= BubbleQuantity; i++)
+        for (int i = 0; i < BubbleQuantity; i++)
         {
             float positionX = Random.Range(-Width/2, Width/2);
-            float positionY = Random.Range(-(2 * Height), 0);
+            float positionY = Random.Range(-(2 * Height), -2);
             Vector3 position = new Vector3(positionX, positionY, 0);
             GameObject instance = Instantiate(BubbleObject, position, Quaternion.identity);
             instance.name = "Bubble " + i.ToString();
