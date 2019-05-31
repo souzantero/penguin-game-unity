@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.mousePosition.x - Camera.main.WorldToScreenPoint(gameObject.transform.position).x;
         float y = Input.mousePosition.y - Camera.main.WorldToScreenPoint(gameObject.transform.position).y;
 
-        Move(x, y);
+        TryMove(x, y);
     }
 
     void MoveByTouch()
@@ -44,8 +44,43 @@ public class PlayerController : MonoBehaviour
             float x = touch.position.x - Camera.main.WorldToScreenPoint(gameObject.transform.position).x;
             float y = touch.position.y - Camera.main.WorldToScreenPoint(gameObject.transform.position).y;
 
+            TryMove(x, y);
+        }
+    }
+
+    void TryMove(float x, float y)
+    {
+        if (!CheckBorder(x, y))
+        {
             Move(x, y);
         }
+    }
+
+    bool CheckBorder(float x, float y)
+    {
+        if (y > 0.0f && transform.position.y >= 0.25f)
+        {
+            transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            body.velocity = Vector2.zero;
+            return true;
+        }
+        else if (y < 0.0f && transform.position.y <= -100.0f)
+        {
+            body.velocity = Vector2.zero;
+            return true;
+        }
+        else if (x > 0.0f && transform.position.x >= 100.0f)
+        {
+            body.velocity = Vector2.zero;
+            return true;
+        }
+        else if (x < 0.0f && transform.position.x <= -100.0f)
+        {
+            body.velocity = Vector2.zero;
+            return true;
+        }
+
+        return false;
     }
 
     void Move(float x, float y)
