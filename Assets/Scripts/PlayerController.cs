@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!GameManager.instance.isStarted) return;
-
         switch (SystemInfo.deviceType)
         {
             case DeviceType.Desktop: MoveByPointer(); break;
@@ -52,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void TryMove(float x, float y)
     {
+        if (!GameManager.instance.CanMovePlayer()) return;
         if (!CheckBorder(x, y))
         {
             Move(x, y);
@@ -62,12 +61,23 @@ public class PlayerController : MonoBehaviour
 
     bool CheckBorder(float x, float y)
     {
-        if ((y > 0.0f && transform.position.y >= 0.25f) || (y < 0.0f && transform.position.y <= -100.0f))
+        if (y > 0.0f && transform.position.y >= 0.25f)
+        {
+            GameManager.instance.FinishRound();
+            body.velocity = Vector2.zero;
+            return true;
+        }
+        else if (y < 0.0f && transform.position.y <= -100.0f)
         {
             body.velocity = Vector2.zero;
             return true;
         }
-        else if ((x > 0.0f && transform.position.x >= 100.0f) || (x < 0.0f && transform.position.x <= -100.0f))
+        else if (x > 0.0f && transform.position.x >= 100.0f)
+        {
+            body.velocity = Vector2.zero;
+            return true;
+        }
+        else if (x < 0.0f && transform.position.x <= -100.0f)
         {
             body.velocity = Vector2.zero;
             return true;

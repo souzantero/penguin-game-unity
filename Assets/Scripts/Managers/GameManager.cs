@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public bool isStarted { get; private set; }
+    public static GameManager instance { get; private set; }
+    public bool isPlaying { get; private set; }
+    public Player player { get; private set; }
 
-    private void Start()
+    void Start()
     {
-        isStarted = false;
+        isPlaying = false;
+        player = null;
     }
 
     void Awake()
@@ -58,7 +60,27 @@ public class GameManager : MonoBehaviour
     {
         if (y < -25.0f)
         {
-            isStarted = true;
+            BeginRound();
         }
+    }
+
+    public void BeginRound()
+    {
+        player = new Player()
+        {
+
+        };
+
+        isPlaying = true;
+    }
+
+    public void FinishRound()
+    {
+        isPlaying = false;
+    }
+
+    public bool CanMovePlayer()
+    {
+        return isPlaying;
     }
 }
