@@ -56,27 +56,18 @@ public class PlayerController : MonoBehaviour
         {
             Move(x, y);
         }
+
+        Rotate(x, y);
     }
 
     bool CheckBorder(float x, float y)
     {
-        if (y > 0.0f && transform.position.y >= 0.25f)
-        {
-            transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-            body.velocity = Vector2.zero;
-            return true;
-        }
-        else if (y < 0.0f && transform.position.y <= -100.0f)
+        if ((y > 0.0f && transform.position.y >= 0.25f) || (y < 0.0f && transform.position.y <= -100.0f))
         {
             body.velocity = Vector2.zero;
             return true;
         }
-        else if (x > 0.0f && transform.position.x >= 100.0f)
-        {
-            body.velocity = Vector2.zero;
-            return true;
-        }
-        else if (x < 0.0f && transform.position.x <= -100.0f)
+        else if ((x > 0.0f && transform.position.x >= 100.0f) || (x < 0.0f && transform.position.x <= -100.0f))
         {
             body.velocity = Vector2.zero;
             return true;
@@ -85,89 +76,93 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    void Move(float x, float y)
+    void Rotate(float x, float y)
     {
-        Vector2 direction = Vector2.zero;
-
         if (x >= 0.0f && y >= 0.0f)
         {
             spriteRenderer.flipX = false;
 
             if ((x - y) > -diagonalArea && (x - y) < diagonalArea)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -45.0f);
-                direction = new Vector2(1, 1).normalized;
-            }
             else if (x >= y)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
-                direction = Vector2.right;
-            }
             else
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-                direction = Vector2.up;
-            }
         }
         else if (x >= 0.0f && y < 0.0f)
         {
             spriteRenderer.flipX = false;
 
             if ((x + y) > -diagonalArea && (x + y) < diagonalArea)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -135.0f);
-                direction = new Vector2(1, -1).normalized;
-            }
             else if ((x + y) >= 0)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
-                direction = Vector2.right;
-            }
             else
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -180.0f);
-                direction = Vector2.down;
-            }
         }
         else if (x < 0.0f && y >= 0.0f)
         {
             spriteRenderer.flipX = true;
 
             if ((x + y) > -diagonalArea && (x + y) < diagonalArea)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 45.0f);
-                direction = new Vector2(-1, 1).normalized;
-            }
             else if ((x + y) >= 0)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-                direction = Vector2.up;
-            }
             else
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
-                direction = Vector2.left;
-            }
         }
         else if (x < 0.0f && y < 0.0f)
         {
             spriteRenderer.flipX = true;
 
             if ((x - y) > -diagonalArea && (x - y) < diagonalArea)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 135.0f);
-                direction = new Vector2(-1, -1).normalized;
-            }
             else if (x <= y)
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
-                direction = Vector2.left;
-            }
             else
-            {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
+        }
+    }
+
+    void Move(float x, float y)
+    {
+        Vector2 direction = Vector2.zero;
+
+        if (x >= 0.0f && y >= 0.0f)
+        {
+            if ((x - y) > -diagonalArea && (x - y) < diagonalArea)
+                direction = new Vector2(1, 1).normalized;
+            else if (x >= y)
+                direction = Vector2.right;
+            else
+                direction = Vector2.up;
+        }
+        else if (x >= 0.0f && y < 0.0f)
+        {
+            if ((x + y) > -diagonalArea && (x + y) < diagonalArea)
+                direction = new Vector2(1, -1).normalized;
+            else if ((x + y) >= 0)
+                direction = Vector2.right;
+            else
                 direction = Vector2.down;
-            }
+        }
+        else if (x < 0.0f && y >= 0.0f)
+        {
+            if ((x + y) > -diagonalArea && (x + y) < diagonalArea)
+                direction = new Vector2(-1, 1).normalized;
+            else if ((x + y) >= 0)
+                direction = Vector2.up;
+            else
+                direction = Vector2.left;
+        }
+        else if (x < 0.0f && y < 0.0f)
+        {
+            if ((x - y) > -diagonalArea && (x - y) < diagonalArea)
+                direction = new Vector2(-1, -1).normalized;
+            else if (x <= y)
+                direction = Vector2.left;
+            else
+                direction = Vector2.down;
         }
 
         body.velocity = direction * Speed;

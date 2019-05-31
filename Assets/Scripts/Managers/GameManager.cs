@@ -5,7 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public bool isStarted = false;
+    public bool isStarted { get; private set; }
+
+    private void Start()
+    {
+        isStarted = false;
+    }
 
     void Awake()
     {
