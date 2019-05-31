@@ -6,12 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     public bool isPlaying { get; private set; }
-    public Player player { get; private set; }
 
     void Start()
     {
         isPlaying = false;
-        player = null;
     }
 
     void Awake()
@@ -66,21 +64,12 @@ public class GameManager : MonoBehaviour
 
     public void BeginRound()
     {
-        player = new Player()
-        {
-
-        };
-
+        PlayerManager.instance.BuildNew();
         isPlaying = true;
     }
 
     public void FinishRound()
     {
         isPlaying = false;
-    }
-
-    public bool CanMovePlayer()
-    {
-        return isPlaying;
     }
 }

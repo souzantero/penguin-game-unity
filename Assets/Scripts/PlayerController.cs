@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void TryMove(float x, float y)
     {
-        if (!GameManager.instance.CanMovePlayer()) return;
+        if (!GameManager.instance.isPlaying) return;
         if (!CheckBorder(x, y))
         {
             Move(x, y);
