@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isStarted) return;
+
         switch (SystemInfo.deviceType)
         {
             case DeviceType.Desktop: MoveByPointer(); break;
