@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FishController : MonoBehaviour
 {
-    public float MoveSpeed;
-    public float EscapeDistance;
-    public int TurnTime;
+    public float moveSpeed;
+    public float escapeDistance;
+    public int turnTime;
 
     private Rigidbody2D body;
     private SpriteRenderer spriteRenderer;
@@ -24,7 +24,7 @@ public class FishController : MonoBehaviour
     void FixedUpdate()
     {
         var distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance < EscapeDistance)
+        if (distance < escapeDistance)
         {
             Escape();
         }
@@ -48,12 +48,12 @@ public class FishController : MonoBehaviour
             direction = Vector2.right;
         }
 
-        body.velocity = direction * MoveSpeed;
+        body.velocity = direction * moveSpeed;
     }
 
     void CheckIfNeededTurn()
     {
-        if (turnTimeCount >= TurnTime)
+        if (turnTimeCount >= turnTime)
         {
             turnTimeCount = 0;
             spriteRenderer.flipX = !spriteRenderer.flipX;
@@ -77,6 +77,6 @@ public class FishController : MonoBehaviour
             direction = Vector2.right;
         }
 
-        body.velocity = direction * MoveSpeed;
+        body.velocity = direction * moveSpeed;
     }
 }

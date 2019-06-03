@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class OceanBuilder : MonoBehaviour
 {
-    public float Width;
-    public float Height;
-    public GameObject OceanObject;
+    public float width;
+    public float height;
+    public GameObject oceanObject;
 
     void Start()
     {
-        for (int i = 0; i < Width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j = 0; j < Height; j++)
+            for(int j = 0; j < height; j++)
             {
-                float positionX = (-(Width / 2) + i);
-                float positionY = (-(Height) + j);
+                float positionX = (-(width / 2) + i);
+                float positionY = (-(height) + j);
                 Vector3 position = new Vector3(positionX, positionY, 0);
-                GameObject instance = Instantiate(OceanObject, position, Quaternion.identity);
+                GameObject instance = Instantiate(oceanObject, position, Quaternion.identity);
                 instance.name = "Ocean " + i.ToString();
                 instance.transform.parent = gameObject.transform;
             }

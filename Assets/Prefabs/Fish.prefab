@@ -131,6 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18532d213a2bd4540bb051ab597b7269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1.5
-  EscapeDistance: 3
-  TurnTime: 4
+  moveSpeed: 3
+  escapeDistance: 3
+  turnTime: 3

@@ -5,7 +5,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Speed;
+    public float speed;
 
     private Rigidbody2D body;
     private SpriteRenderer spriteRenderer;
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 direction = Vector2.down;
         }
 
-        body.velocity = direction * Speed;
+        body.velocity = direction * speed;
     }
 
     void OnTriggerEnter2D(Collider2D other)
