@@ -183,6 +183,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Fish"))
         {
             other.gameObject.SetActive(false);
+            PlayerManager.instance.PlusCaughtFishQuantity(); 
         }
     }
 }

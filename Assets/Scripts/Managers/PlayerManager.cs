@@ -36,7 +36,16 @@ public class PlayerManager : MonoBehaviour
         if (decreaseOxygenCount >= decreaseOxygenTime)
         {
             decreaseOxygenCount = 0;
-            player.DecreaseOxygen(decreaseOxygenTime / 100);
+            player.percentageOfOxygen -= 0.1f;
+
+            if (player.percentageOfOxygen <= 0.0f)
+            {
+                player.percentageOfOxygen = 0.0f;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GameManager.instance.FinishRound();
+            }
+
+            UIManager.instance.OnPercentageOfOxygen(player.percentageOfOxygen);
         }
 
         decreaseOxygenCount += Time.deltaTime;
@@ -46,7 +55,14 @@ public class PlayerManager : MonoBehaviour
     {
         player = new Player()
         {
-            oxygen = 1.0f
+            percentageOfOxygen = 1.0f,
+            caughtFishQuantity = 0
         };
+    }
+
+    public void PlusCaughtFishQuantity()
+    {
+        player.caughtFishQuantity++;
+        UIManager.instance.OnCaughtFishQuantityText(player.caughtFishQuantity);
     }
 }
